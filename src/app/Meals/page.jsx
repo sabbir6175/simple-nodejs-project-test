@@ -1,33 +1,35 @@
-"use client";
-import React, { useEffect, useState } from "react";
 
-const page = () => {
-  const [meals, setMeals] = useState([]);
-  const [search, setSearch] = useState("");
+import MealSearch from "./components/MealSearch";
+
+const  page = async ({ searchParams }) => {
+//   const [meals, setMeals] = useState([]);
+//   const [search, setSearch] = useState("");
+    const query = await searchParams;
 
   const fetchMeals = async () => {
     try {
       const response = await fetch(
-        `https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`
+        `https://www.themealdb.com/api/json/v1/1/search.php?s=${query.search}`
       );
       const data = await response.json();
-      setMeals(data?.meals || []);
+    //   setMeals(data?.meals || []);
+        return data.meals;
     } catch (error) {
       console.log(error);
       return [];
     }
   };
-  useEffect(() => {
-    fetchMeals();
-  }, [search]);
+
+    const meals = await fetchMeals();
+// console.log(meals);
 
   return (
     <div className="container mx-auto">
       <h1 className="text-center my-10 text-2xl font-bold">
-        Welcome to Meals page {meals.length}{" "}
+        Welcome to Meals page {meals.length}
       </h1>
       {/* <p>{JSON.stringify(meals)}</p> */}
-      <div className=" flex justify-center place-content-center my-10 items-center gap-5">
+      {/* <div className=" flex justify-center place-content-center my-10 items-center gap-5">
         <label htmlFor="search" className=" text-black font-bold text-lg">
           Search meals :{" "}
         </label>
@@ -38,8 +40,8 @@ const page = () => {
           placeholder="Search meals"
           className="border border-gray-200 p-2 rounded-md outline-green-400 "
         />
-      </div>
-
+      </div> */}
+            <MealSearch></MealSearch>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {meals?.map((singleMeal) => (
           <div
@@ -49,7 +51,7 @@ const page = () => {
             <img
               src={singleMeal.strMealThumb}
               alt={singleMeal.strMeal}
-              className=""
+              className=" w-full h-40 object-cover rounded-md"
             />
             <h2 className="text-xl">strMeal: {singleMeal.strMeal}</h2>
             <h4>strCategory: {singleMeal.strCategory}</h4>
