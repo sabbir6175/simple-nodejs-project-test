@@ -26,7 +26,7 @@ const  page = async ({ searchParams }) => {
   return (
     <div className="container mx-auto">
       <h1 className="text-center my-10 text-2xl font-bold">
-        Welcome to Meals page {meals.length}
+        Welcome to Meals page {meals?.length}
       </h1>
       {/* <p>{JSON.stringify(meals)}</p> */}
       {/* <div className=" flex justify-center place-content-center my-10 items-center gap-5">

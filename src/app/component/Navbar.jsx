@@ -3,8 +3,8 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <div className="bg-gradient-to-r from-green-200 to-pink-300 py-4 text-white">
-      <div className="flex justify-between items-center container mx-auto ">
+    <div className="fixed w-full z-10 top-0  backdrop-blur-md opacity-70 text-black bg-gradient-to-r from-green-200 to-pink-300 py-4 ">
+      <div className="flex justify-between items-center container mx-auto  ">
         <div>
           <img
             src="https://i.ibb.co.com/0V6p4B7j/testimony-feat-bg.png"
@@ -17,11 +17,11 @@ const Navbar = () => {
             <Link href="/">
               <li>Home</li>
             </Link>
-            <Link href="/About">
-              <li>About</li>
-            </Link>
             <Link href="/Meals">
               <li>Meals</li>
+            </Link>
+            <Link href="/About">
+              <li>About</li>
             </Link>
             <Link href="/Service">
               <li>Service</li>
